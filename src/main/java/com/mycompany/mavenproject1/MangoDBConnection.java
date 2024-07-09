@@ -29,50 +29,16 @@ import org.springframework.stereotype.Component;
 public class MangoDBConnection {
     
     @Autowired
-    private final MongoClient mongoClient;
     private final MongoDatabase database;
-    private final MongoCollection<Document> collection; 
+    private final MongoCollection<Document> collection;
 
+    @Autowired
+    public MangoDBConnection() {
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://khadeem:lenin_JO@clusterleninjo.divpuaq.mongodb.net/LeninJobOrder?retryWrites=true&w=majority&appName=ClusterLeninJO");
+        this.database = mongoClient.getDatabase("LeninJobOrder");
+        this.collection = database.getCollection("solutionsClient");
+    }
     
-    public MangoDBConnection(JOVar config) throws IOException, Exception {
-    //        SecretKey key = config.getKey();
-    //        IvParameterSpec iv = config.getIv();
-//
-//        String user = config.getUser();
-//        String cluster = config.getCluster();
-//        String databased = config.getDatabase();
-//        String collectioned = config.getCollection();
-//        String cluster2 = cluster;
-//                
-//        if (cluster2 != null) {
-//          cluster2 = cluster.toLowerCase();
-//        }
-        
-//        String fileName = "encryptedData.jit";
-//        String loadedEncryptedString = AESUtil.loadEncryptedString(fileName);
-//        String password = AESUtil.decrypt(loadedEncryptedString, key, iv);
-//        System.out.println("Decrypted data: " + password);
-        String password = "lenin_JO";
-            String user = "khadeem";
-            String cluster = "ClusterLeninJO";
-            String databased = "LeninJobOrder";
-            String collectioned = "solutionsClient";
-       
-            String connectionString = String.format("mongodb+srv://%s:%s@%s.divpuaq.mongodb.net/?retryWrites=true&w=majority&appName=%s",
-                    user, cluster.toLowerCase(), password, cluster);
-            this.mongoClient = MongoClients.create(connectionString);
-            this.database = mongoClient.getDatabase(databased);
-            this.collection = database.getCollection(collectioned);
-
-            // Register a shutdown hook to close MongoClient
-            Runtime.getRuntime().addShutdownHook(new Thread(this::closeMongoClient));
-    }
-
-    private void closeMongoClient() {
-        if (mongoClient != null) {
-            mongoClient.close();
-        }
-    }
 
     public void updateStatusByJobCode(String jobCode, String newStatus) {
         try {

@@ -30,10 +30,10 @@ public class MangoDBConfig extends javax.swing.JFrame {
             String database = "LeninJobOrder";
             String collection = "solutionsClient";
             
-            config.setUser(user);
-            config.setCluster(cluster);
-            config.setDatabase(database);
-            config.setCollection(collection);
+//            config.setUser(user);
+//            config.setCluster(cluster);
+//            config.setDatabase(database);
+//            config.setCollection(collection);
         
     }
 
@@ -184,11 +184,11 @@ public class MangoDBConfig extends javax.swing.JFrame {
           return;
         }
 
-        config.setUser(user);
-        config.setPassword(password);
-        config.setCluster(cluster);
-        config.setDatabase(database);
-        config.setCollection(collection);
+//        config.setUser(user);
+//        config.setPassword(password);
+//        config.setCluster(cluster);
+//        config.setDatabase(database);
+//        config.setCollection(collection);
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -212,11 +212,11 @@ public class MangoDBConfig extends javax.swing.JFrame {
             String cluster = "ClusterLeninJO";
             String database = "LeninJobOrder";
             String collection = "solutionsClient";
-            
-            config.setUser(user);
-            config.setCluster(cluster);
-            config.setDatabase(database);
-            config.setCollection(collection);
+//            
+//            config.setUser(user);
+//            config.setCluster(cluster);
+//            config.setDatabase(database);
+//            config.setCollection(collection);
             
             String clusterText = cluster;
       
