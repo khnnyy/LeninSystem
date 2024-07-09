@@ -251,7 +251,7 @@ public class JobOrderForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(submit)
                     .addComponent(clear))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -327,7 +327,8 @@ public class JobOrderForm extends javax.swing.JFrame {
         body.append("<p><strong>Job Code:</strong> ").append(jobCode).append("</p>");
         body.append("</body></html>");
 //        body.append("<p>Click <a href='http://localhost:8080/joborder/updateStatus?jobCode=").append(jobCode).append("&status=confirmed'>here</a> to confirm.</p>");
-        String uRL = "https://leninwebserverjo.onrender.com"; // Replace <your_ngrok_subdomain> with the actual subdomain provided by ngrok
+//        String uRL = "https://leninwebserverjo.onrender.com"; // Replace <your_ngrok_subdomain> with the actual subdomain provided by ngrok
+        String uRL = "https://leninwebserver.onrender.com"; // Replace <your_ngrok_subdomain> with the actual subdomain provided by ngrok
         body.append("<p>Click <a href='").append(uRL).append("/joborder/updateStatus?jobCode=").append(jobCode).append("&status=confirmed'>here</a> to confirm.</p>");
         
         body.append("</body></html>");
