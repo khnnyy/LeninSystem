@@ -33,6 +33,7 @@ public class JOVar {
     private String dateDue;
     private String status;
     private String confirmationToken;
+    private String expectedDue;
     
     private String email;
     private String password;
@@ -64,6 +65,7 @@ public class JOVar {
 //        return this.iv;
 //    }
         // Getters and setters
+    
     
     public void setEmail(String email){
         this.email = email;

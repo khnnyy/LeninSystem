@@ -61,8 +61,9 @@ public class MangoDBConnection {
                     .append("concern", att.getConcern())
                     .append("leader", att.getLeader())
                     .append("transportation", att.getTranspo())
-                    .append("date_issued", att.getDateIssued())
                     .append("date_due", att.getDateDue())
+                    .append("date_issued", att.getDateIssued())
+                    .append("date_confirmed", "-")
                     .append("status", att.getStatus());
 
             collection.insertOne(document);

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.UUID;
 import javax.swing.SwingUtilities;
 
@@ -66,8 +67,7 @@ public class JobOrderForm extends javax.swing.JFrame {
         submit = new javax.swing.JButton();
         clear = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        dueDate = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        dateDue = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -133,7 +133,7 @@ public class JobOrderForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setText("Tranportation:");
+        jLabel9.setText("Tranportations:");
 
         transportation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<none>", "1-5 KM", "6-10 KM", "11-15 KM", "16-20 KM", "20-25 KM", " " }));
         transportation.addActionListener(new java.awt.event.ActionListener() {
@@ -168,8 +168,7 @@ public class JobOrderForm extends javax.swing.JFrame {
 
         jLabel3.setText("Due Date:");
 
-        jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
-        jLabel8.setText("mm/dd/yyyy");
+        dateDue.setDateFormatString("MM/dd/yyyy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -217,20 +216,15 @@ public class JobOrderForm extends javax.swing.JFrame {
                                     .addComponent(jLabel9))
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(transportation, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(leader, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addComponent(leader, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(dueDate))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(transportation, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))))
-                .addContainerGap(54, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(86, 86, 86))
+                                        .addComponent(dateDue, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,14 +257,13 @@ public class JobOrderForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(leader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel3)
-                    .addComponent(dueDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(leader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel3))
+                    .addComponent(dateDue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -283,6 +276,7 @@ public class JobOrderForm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void projectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectActionPerformed
@@ -314,27 +308,33 @@ public class JobOrderForm extends javax.swing.JFrame {
     }//GEN-LAST:event_transportationActionPerformed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-        
-        
-        String jobOrderType = getJobOrderType();
-        String clientName = this.clientName.getText();
-        String address = this.address.getText();
-        String contact = this.contact.getText();
-        String concern = this.concern.getText();
-        String leader = this.leader.getText();
-        String transportation = this.transportation.getSelectedItem().toString();
-        String jobCode = this.jobCode.getText();
-        String status = "pending";
 
-        att.setJobOrderType(jobOrderType);
-        att.setClientName(clientName);
-        att.setAddress(address);
-        att.setContact(contact);
-        att.setConcern(concern);
-        att.setLeader(leader);
-        att.setTranspo(transportation);
-        att.setJobCode(jobCode);
-        att.setStatus(status);
+            String jobOrderType = getJobOrderType();
+            String clientName = this.clientName.getText();
+            String address = this.address.getText();
+            String contact = this.contact.getText();
+            String concern = this.concern.getText();
+            String leader = this.leader.getText();
+            String transportation = this.transportation.getSelectedItem().toString();
+            String jobCode = this.jobCode.getText();
+            String dateIssued = Util.getDate();
+            Date dateDue2 = this.dateDue.getDate();
+            String dateDue = dateDue2.toString();
+            String status = "pending";
+
+            att.setJobOrderType(jobOrderType);
+            att.setClientName(clientName);
+            att.setAddress(address);
+            att.setContact(contact);
+            att.setConcern(concern);
+            att.setLeader(leader);
+            att.setTranspo(transportation);
+            att.setJobCode(jobCode);
+            att.setDateIssued(dateIssued);
+            att.setDateDue(dateDue);
+            att.setStatus(status);
+        
+
         
         // Disable UI components during processing
         submit.setEnabled(false);
@@ -389,6 +389,8 @@ body.append("<tr><th>Contact:</th><td>").append(contact).append("</td></tr>");
 body.append("<tr><th>Initial Concern:</th><td>").append(concern).append("</td></tr>");
 body.append("<tr><th>Team Leader:</th><td>").append(leader).append("</td></tr>");
 body.append("<tr><th>Transportation:</th><td>").append(transportation).append("</td></tr>");
+body.append("<tr><th>Date Issued:</th><td>").append(dateIssued).append("</td></tr>");
+body.append("<tr><th>Expected Due:</th><td>").append(dateDue).append("</td></tr>");
 body.append("<tr><th>Job Code:</th><td>").append(jobCode).append("</td></tr>");
 body.append("</table>");
 body.append("<p style='margin-top: 20px;'>Click <a href='").append(uRL).append("/joborder/updateStatus?jobCode=").append(jobCode).append("&status=confirmed'>here</a> to confirm.</p>");
@@ -435,27 +437,20 @@ body.append("</html>");
         worker.execute();
     }//GEN-LAST:event_submitActionPerformed
 
-    public static List<List<Object>> prepareRowData(String jobOrderType, String clientName, String address, String contact,
-                                                    String concern, String leader, String transportation, String jobCode) {
-        return Arrays.asList(
-            Arrays.asList(jobOrderType, clientName, address, contact, concern, leader, transportation, jobCode)
-        );
-    }
-
-    
     private void jobCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobCodeActionPerformed
  
     }//GEN-LAST:event_jobCodeActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+        jobtype.clearSelection();
         jobCode.setText("");
         clientName.setText("");
         address.setText("");
         contact.setText("");
         concern.setText("");
         leader.setText("");
-        transportation.getSelectedItem();
-        jobCode.getText();
+        transportation.setSelectedIndex(0);
+        dateDue.setDate(null); 
 
     }//GEN-LAST:event_clearActionPerformed
     
@@ -473,19 +468,18 @@ body.append("</html>");
 }
 
     
+    private String getJobOrderType() {
     
-private String getJobOrderType() {
-    
-    if (cm.isSelected()) {
-        return "CM";
-    } else if (occular.isSelected()) {
-        return "OCCULAR";
-    } else if (project.isSelected()) {
-        return "PROJECT";
+        if (cm.isSelected()) {
+            return "CM";
+        } else if (occular.isSelected()) {
+            return "OCCULAR";
+        } else if (project.isSelected()) {
+            return "PROJECT";
+        }
+        JOptionPane.showMessageDialog(this, "Please select a Job Order.", "Job Order Selection", JOptionPane.WARNING_MESSAGE);
+        return "";
     }
-    JOptionPane.showMessageDialog(this, "Please select a Job Order.", "Job Order Selection", JOptionPane.WARNING_MESSAGE);
-    return "";
-}
 
 
     
@@ -531,7 +525,7 @@ private String getJobOrderType() {
     private javax.swing.JRadioButton cm;
     private javax.swing.JTextArea concern;
     private javax.swing.JTextField contact;
-    private javax.swing.JTextField dueDate;
+    private com.toedter.calendar.JDateChooser dateDue;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -539,7 +533,6 @@ private String getJobOrderType() {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
