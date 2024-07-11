@@ -1,13 +1,45 @@
 package com.mycompany.mavenproject1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Properties;
+import java.util.Scanner;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
 
 public class EmailForm {
 
+    
+    private static JOVar mail = new JOVar();
+    
+    public static void readEmailConfig(){
+        try {
+      File myObj = new File("emailConfig.jit");
+      Scanner myReader = new Scanner(myObj);
+ 
+        String email = myReader.nextLine();
+        mail.setEmail(email);
+        System.out.println(email);
+        
+        String password = myReader.nextLine();
+        mail.setPassword(password);
+        System.out.println(password);
+
+        
+      myReader.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+  }
+    public static JOVar getConfig(){
+        return mail;
+    }
+
     public static void sendEmail(String to, String from, String host, String subject, String body, String fileName) {
+        try{
+        readEmailConfig();
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host", host);
         properties.put("mail.smtp.auth", "true");
@@ -17,7 +49,9 @@ public class EmailForm {
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 // Replace with your email and password
-                return new PasswordAuthentication("notmycandy56@gmail.com", "nzgx yqhz gigr amjh");
+//                return new PasswordAuthentication("notmycandy56@gmail.com", "nzgx yqhz gigr amjh");
+                return new PasswordAuthentication(mail.getEmail(), mail.getPassword());
+
             }
         });
 
@@ -53,5 +87,8 @@ public class EmailForm {
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
+    } catch(Exception e) {
+            System.out.println(e);
     }
+}
 }

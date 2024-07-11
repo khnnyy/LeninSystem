@@ -65,8 +65,11 @@ public class JobOrderForm extends javax.swing.JFrame {
         jobCode = new javax.swing.JTextField();
         submit = new javax.swing.JButton();
         clear = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        dueDate = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Job Order Type:");
 
@@ -132,7 +135,7 @@ public class JobOrderForm extends javax.swing.JFrame {
 
         jLabel9.setText("Tranportation:");
 
-        transportation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        transportation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<none>", "1-5 KM", "6-10 KM", "11-15 KM", "16-20 KM", "20-25 KM", " " }));
         transportation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 transportationActionPerformed(evt);
@@ -157,6 +160,16 @@ public class JobOrderForm extends javax.swing.JFrame {
         });
 
         clear.setText("Clear Form");
+        clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Due Date:");
+
+        jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
+        jLabel8.setText("mm/dd/yyyy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,26 +182,8 @@ public class JobOrderForm extends javax.swing.JFrame {
                         .addComponent(title))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(clear))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(contact, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(submit, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cm)
@@ -198,15 +193,44 @@ public class JobOrderForm extends javax.swing.JFrame {
                                 .addComponent(project)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jobCode))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(leader, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(transportation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(119, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(clear))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(submit, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addComponent(contact)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9))
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(leader, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(dueDate))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(transportation, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,15 +263,19 @@ public class JobOrderForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(leader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel3)
+                    .addComponent(dueDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(transportation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(submit)
                     .addComponent(clear))
@@ -287,7 +315,6 @@ public class JobOrderForm extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         
-        String uniqueToken = UUID.randomUUID().toString();
         
         String jobOrderType = getJobOrderType();
         String clientName = this.clientName.getText();
@@ -314,25 +341,60 @@ public class JobOrderForm extends javax.swing.JFrame {
         clear.setEnabled(false);
 
         // Build email body
-        StringBuilder body = new StringBuilder();
-        body.append("<html><body>");
-        body.append("<h2>Job Order Form Submission</h2>");
-        body.append("<p><strong>Job Order Type:</strong> ").append(jobOrderType).append("</p>");
-        body.append("<p><strong>Client Name:</strong> ").append(clientName).append("</p>");
-        body.append("<p><strong>Address:</strong> ").append(address).append("</p>");
-        body.append("<p><strong>Contact:</strong> ").append(contact).append("</p>");
-        body.append("<p><strong>Initial Concern:</strong><br>").append(concern).append("</p>");
-        body.append("<p><strong>Team Leader:</strong> ").append(leader).append("</p>");
-        body.append("<p><strong>Transportation:</strong> ").append(transportation).append("</p>");
-        body.append("<p><strong>Job Code:</strong> ").append(jobCode).append("</p>");
-        body.append("</body></html>");
-//        body.append("<p>Click <a href='http://localhost:8080/joborder/updateStatus?jobCode=").append(jobCode).append("&status=confirmed'>here</a> to confirm.</p>");
-//        String uRL = "https://leninwebserverjo.onrender.com"; // Replace <your_ngrok_subdomain> with the actual subdomain provided by ngrok
+//        StringBuilder body = new StringBuilder();
+//        body.append("<html><body>");
+//        body.append("<h2>Job Order Form Submission</h2>");
+//        body.append("<p><strong>Job Order Type:</strong> ").append(jobOrderType).append("</p>");
+//        body.append("<p><strong>Client Name:</strong> ").append(clientName).append("</p>");
+//        body.append("<p><strong>Address:</strong> ").append(address).append("</p>");
+//        body.append("<p><strong>Contact:</strong> ").append(contact).append("</p>");
+//        body.append("<p><strong>Initial Concern:</strong><br>").append(concern).append("</p>");
+//        body.append("<p><strong>Team Leader:</strong> ").append(leader).append("</p>");
+//        body.append("<p><strong>Transportation:</strong> ").append(transportation).append("</p>");
+//        body.append("<p><strong>Job Code:</strong> ").append(jobCode).append("</p>");
+//        body.append("</body></html>");
+////        body.append("<p>Click <a href='http://localhost:8080/joborder/updateStatus?jobCode=").append(jobCode).append("&status=confirmed'>here</a> to confirm.</p>");
+////        String uRL = "https://leninwebserverjo.onrender.com"; // Replace <your_ngrok_subdomain> with the actual subdomain provided by ngrok
         String uRL = "https://leninwebserver.onrender.com"; // Replace <your_ngrok_subdomain> with the actual subdomain provided by ngrok
-        body.append("<p>Click <a href='").append(uRL).append("/joborder/updateStatus?jobCode=").append(jobCode).append("&status=confirmed'>here</a> to confirm.</p>");
+//        body.append("<p>Click <a href='").append(uRL).append("/joborder/updateStatus?jobCode=").append(jobCode).append("&status=confirmed'>here</a> to confirm.</p>");
+//        
+//        body.append("</body></html>");
         
-        body.append("</body></html>");
-        
+StringBuilder body = new StringBuilder();
+body.append("<!DOCTYPE html>");
+body.append("<html lang='en' style='font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif;'>");
+body.append("<head>");
+body.append("<meta charset='UTF-8'>");
+body.append("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
+body.append("<title>Job Order Form Submission</title>");
+body.append("<style>");
+body.append("body { margin: 0; padding: 0; background-color: #f9f9f9; }");
+body.append("table { width: 100%; border-collapse: collapse; border-spacing: 0; }");
+body.append("th, td { padding: 10px; border-bottom: 1px solid #ddd; }");
+body.append("th { background-color: #f0f0f0; }");
+body.append("a { text-decoration: none; color: #337ab7; }");
+body.append("a:hover { color: #23527c; }");
+body.append("</style>");
+body.append("</head>");
+body.append("<body>");
+body.append("<header style='background-color: #333; color: #fff; padding: 20px; text-align: center;'>");
+body.append("<h2>Job Order Form Submission</h2>");
+body.append("</header>");
+body.append("<main style='max-width: 600px; margin: 40px auto; padding: 20px; background-color: #fff; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);'>");
+body.append("<table>");
+body.append("<tr><th>Job Order Type:</th><td>").append(jobOrderType).append("</td></tr>");
+body.append("<tr><th>Client Name:</th><td>").append(clientName).append("</td></tr>");
+body.append("<tr><th>Address:</th><td>").append(address).append("</td></tr>");
+body.append("<tr><th>Contact:</th><td>").append(contact).append("</td></tr>");
+body.append("<tr><th>Initial Concern:</th><td>").append(concern).append("</td></tr>");
+body.append("<tr><th>Team Leader:</th><td>").append(leader).append("</td></tr>");
+body.append("<tr><th>Transportation:</th><td>").append(transportation).append("</td></tr>");
+body.append("<tr><th>Job Code:</th><td>").append(jobCode).append("</td></tr>");
+body.append("</table>");
+body.append("<p style='margin-top: 20px;'>Click <a href='").append(uRL).append("/joborder/updateStatus?jobCode=").append(jobCode).append("&status=confirmed'>here</a> to confirm.</p>");
+body.append("</main>");
+body.append("</body>");
+body.append("</html>");
 
         // Send email and update Google Sheets in background
         // Existing email sending and Google Sheets update code...
@@ -340,12 +402,13 @@ public class JobOrderForm extends javax.swing.JFrame {
             @Override
             protected Void doInBackground() throws IOException, GeneralSecurityException {
                 // Update MongoDB status based on job code
-                
+                EmailForm.readEmailConfig();
+                JOVar mail = EmailForm.getConfig();
                 mangoDBConnection.insertData(att);
 
                 // Send email
                 String to = "xabubakarzx@gmail.com";
-                String from = "notmycandy56@gmail.com";
+                String from = mail.getEmail();
                 String host = "smtp.gmail.com";
                 String subject = "Job Order Form Submission";
 
@@ -383,6 +446,18 @@ public class JobOrderForm extends javax.swing.JFrame {
     private void jobCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobCodeActionPerformed
  
     }//GEN-LAST:event_jobCodeActionPerformed
+
+    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+        jobCode.setText("");
+        clientName.setText("");
+        address.setText("");
+        contact.setText("");
+        concern.setText("");
+        leader.setText("");
+        transportation.getSelectedItem();
+        jobCode.getText();
+
+    }//GEN-LAST:event_clearActionPerformed
     
     
     private void updateJobCode() {
@@ -456,12 +531,15 @@ private String getJobOrderType() {
     private javax.swing.JRadioButton cm;
     private javax.swing.JTextArea concern;
     private javax.swing.JTextField contact;
+    private javax.swing.JTextField dueDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

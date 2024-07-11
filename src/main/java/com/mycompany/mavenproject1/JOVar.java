@@ -34,12 +34,8 @@ public class JOVar {
     private String status;
     private String confirmationToken;
     
-    private String user;
+    private String email;
     private String password;
-    private String cluster;
-    private String database;
-    private String collection;
-    
 //    private SecretKey key;
 //    private IvParameterSpec iv;
     
@@ -69,25 +65,23 @@ public class JOVar {
 //    }
         // Getters and setters
     
-//    public void setUser(String user){
-//        this.user = user;
-//    }
-//    
-//    public void setPassword(String password){
-//        this.password = password;
-//    }
-//    
-//    public void setCluster(String cluster){
-//        this.cluster = cluster;
-//    }
-//    
-//    public void setDatabase(String database){
-//        this.database = database;
-//    }
-//    
-//    public void setCollection(String collection){
-//        this.collection = collection;
-//    }
+    public void setEmail(String email){
+        this.email = email;
+    }
+    
+    public void setPassword(String password){
+        this.password = password;
+    }
+    
+    public String getEmail(){
+        return this.email;
+    }
+    
+    public String getPassword(){
+        return this.password;
+    }
+    
+
 
     public void setConfirmationToken(String confirmationToken) {
         this.confirmationToken = confirmationToken;
