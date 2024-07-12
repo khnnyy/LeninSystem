@@ -64,6 +64,7 @@ public class DashBoard extends javax.swing.JFrame {
                         System.out.println(dateDue);
                         System.out.println("new");
                         System.out.println("create push");
+                        System.out.println("create new");
 //                        String warranty = ;
                         // Add more columns as needed based on your document fields
 
