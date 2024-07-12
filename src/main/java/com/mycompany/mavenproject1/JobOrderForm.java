@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Date;
@@ -33,6 +34,12 @@ public class JobOrderForm extends javax.swing.JFrame {
     public JobOrderForm() {
         initComponents();
     }
+    
+//    public static String getDate() {
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date = new Date();
+//        return formatter.format(date);
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -309,6 +316,8 @@ public class JobOrderForm extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
 
+//            Date current_date = new Date();
+            
             String jobOrderType = getJobOrderType();
             String clientName = this.clientName.getText();
             String address = this.address.getText();
@@ -317,10 +326,20 @@ public class JobOrderForm extends javax.swing.JFrame {
             String leader = this.leader.getText();
             String transportation = this.transportation.getSelectedItem().toString();
             String jobCode = this.jobCode.getText();
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  // Set your desired format
+
             String dateIssued = Util.getDate();
-            Date dateDue2 = this.dateDue.getDate();
-            String dateDue = dateDue2.toString();
+            
+            Class<? extends Object> myClass = dateIssued.getClass();
+            System.out.println("Data type of myObject: " + myClass);
+            
+            System.out.println(dateIssued);
+            Date dateDued = this.dateDue.getDate();
+            String dateDue = formatter.format(dateDued);
+ 
             String status = "pending";
+            
 
             att.setJobOrderType(jobOrderType);
             att.setClientName(clientName);

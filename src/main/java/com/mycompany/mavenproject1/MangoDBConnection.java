@@ -39,6 +39,19 @@ public class MangoDBConnection {
         this.collection = database.getCollection("solutionsClient");
     }
     
+    public List<Document> getProjectData() {
+    List<Document> projectData = new ArrayList<>();
+    try {
+      projectData = collection.find()
+          .projection(new Document("job_code", 1).append("client_name", 1).append("status", 1).append("date_issued", 1).append("date_confirmed", 1).append("date_due", 1))
+          .sort(new Document("date_issued", -1))  // Sort by "date_issued" in descending order
+          .into(new ArrayList<>());
+    } catch (MongoException e) {
+      e.printStackTrace();
+    }
+    return projectData;
+  }
+    
 
     public void updateStatusByJobCode(String jobCode, String newStatus) {
         try {
@@ -65,7 +78,8 @@ public class MangoDBConnection {
                     .append("date_issued", att.getDateIssued())
                     .append("date_confirmed", "-")
                     .append("status", att.getStatus());
-
+                   
+                    
             collection.insertOne(document);
         } catch (MongoException e) {
             e.printStackTrace();
