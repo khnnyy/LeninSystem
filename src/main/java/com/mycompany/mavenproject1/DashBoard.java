@@ -61,7 +61,7 @@ public class DashBoard extends javax.swing.JFrame {
                         String dateConfirmed = document.getString("date_confirmed");
 ////                        String runningDays = ;
                         String dateDue = document.getString("date_due");
-//                        System.out.println(dateDue);
+                        System.out.println(dateDue);
 //                        String warranty = ;
                         // Add more columns as needed based on your document fields
 
