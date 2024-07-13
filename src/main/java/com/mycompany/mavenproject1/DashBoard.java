@@ -59,11 +59,9 @@ public class DashBoard extends javax.swing.JFrame {
                         String status = document.getString("status");
                         String dateIssued = document.getString("date_issued");
                         String dateConfirmed = document.getString("date_confirmed");
-////                        String runningDays = ;
+                        String runningDays = document.getString("running_days");
                         String dateDue = document.getString("date_due");
-                        System.out.println(dateDue);
-                        System.out.println("new");
-//                        String warranty = ;
+                        String warranty = document.getString("warranty");
                         // Add more columns as needed based on your document fields
 
                         
@@ -73,7 +71,8 @@ public class DashBoard extends javax.swing.JFrame {
 //                            String formattedDateIssued = formatter.format(dateIssued);
 //                        }
                         // Add a new table row with extracted data
-                        model.addRow(new Object[]{jobCode, clientName, status, dateIssued , dateConfirmed, null, dateDue,null});
+                        model.addRow(new Object[]{jobCode, clientName, status, 
+                            dateIssued , dateConfirmed, runningDays, dateDue, warranty});
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
