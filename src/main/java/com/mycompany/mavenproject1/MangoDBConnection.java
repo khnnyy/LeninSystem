@@ -43,7 +43,14 @@ public class MangoDBConnection {
     List<Document> projectData = new ArrayList<>();
     try {
       projectData = collection.find()
-          .projection(new Document("job_code", 1).append("client_name", 1).append("status", 1).append("date_issued", 1).append("date_confirmed", 1).append("date_due", 1))
+          .projection(new Document("job_code", 1)
+                  .append("client_name", 1)
+                  .append("status", 1)
+                  .append("date_issued", 1)
+                  .append("date_confirmed", 1)
+                  .append("running_days", 1)
+                  .append("date_due", 1)
+                  .append("warranty", 1))
           .sort(new Document("date_issued", -1))  // Sort by "date_issued" in descending order
           .into(new ArrayList<>());
     } catch (MongoException e) {
@@ -77,6 +84,8 @@ public class MangoDBConnection {
                     .append("date_due", att.getDateDue())
                     .append("date_issued", att.getDateIssued())
                     .append("date_confirmed", "-")
+                    .append("running_days", "-")
+                    .append("warranty", "-")
                     .append("status", att.getStatus());
                    
                     
