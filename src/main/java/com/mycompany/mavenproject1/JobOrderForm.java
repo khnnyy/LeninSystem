@@ -89,7 +89,7 @@ public class JobOrderForm extends javax.swing.JFrame {
         });
 
         jobtype.add(occular);
-        occular.setText("OCULLAR");
+        occular.setText("OCULAR");
         occular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 occularActionPerformed(evt);

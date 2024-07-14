@@ -37,7 +37,7 @@ public class DashBoard extends javax.swing.JFrame {
         mdb = new MangoDBConnection();
     }
     
-    private void updateTable() {
+        private void updateTable() {
         // Clear existing table data (optional)
         DefaultTableModel model = (DefaultTableModel) Dsb_Table.getModel();
         model.setRowCount(0);
@@ -54,31 +54,35 @@ public class DashBoard extends javax.swing.JFrame {
                 try {
                     List<Document> projectData = get();
                     for (Document document : projectData) {
-                        String jobCode = document.getString("job_code");
-                        String clientName = document.getString("client_name");
-                        String status = document.getString("status");
-                        String dateIssued = document.getString("date_issued");
-                        String dateConfirmed = document.getString("date_confirmed");
-                        String runningDays = document.getString("running_days");
-                        String dateDue = document.getString("date_due");
-                        String warranty = document.getString("warranty");
-                        // Add more columns as needed based on your document fields
-
+                        String jobCode = getStringValue(document, "job_code");
+                        String clientName = getStringValue(document, "client_name");
+                        String status = getStringValue(document, "status");
+                        String dateIssued = getStringValue(document, "date_issued");
+                        String dateConfirmed = getStringValue(document, "date_confirmed");
+                        String runningDays = getStringValue(document, "running_days");
+                        String dateDue = getStringValue(document, "date_due");
+                        String warranty = getStringValue(document, "warranty");
                         
-//                        if (dateIssued != null) {  // Check for null values before formatting
+                        //                        if (dateIssued != null) {  // Check for null values before formatting
 //                            
 //                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  // Adjust format as needed
 //                            String formattedDateIssued = formatter.format(dateIssued);
 //                        }
                         // Add a new table row with extracted data
-                        model.addRow(new Object[]{jobCode, clientName, status, 
-                            dateIssued , dateConfirmed, runningDays, dateDue, warranty});
+
+                        // Add a new table row with extracted data
+                        model.addRow(new Object[]{jobCode, clientName, status, dateIssued, dateConfirmed, runningDays, dateDue, warranty});
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }.execute();
+    }
+
+    private String getStringValue(Document document, String key) {
+        Object value = document.get(key);
+        return value != null ? value.toString() : null;
     }
 
     /**
@@ -102,7 +106,7 @@ public class DashBoard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Creat Job Order");
+        jButton1.setText("Create Job Order");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
