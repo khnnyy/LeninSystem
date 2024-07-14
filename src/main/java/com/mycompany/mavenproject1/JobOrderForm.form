@@ -180,7 +180,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="jobtype"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="OCULLAR"/>
+        <Property name="text" type="java.lang.String" value="OCULAR"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="occularActionPerformed"/>
