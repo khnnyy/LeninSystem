@@ -90,7 +90,7 @@ public class PanelAction extends javax.swing.JPanel {
 //        JOptionPane.showMessageDialog(actionButton1, "show");
         
         MangoDBConnection mangoDBConnection = new MangoDBConnection();
-        List<Document> projectData = mangoDBConnection.getProjectData();
+//        List<Document> projectData = mangoDBConnection.getProjectData();
         String jobCode = (String) table.getValueAt(row, 0);
         Document doc = mangoDBConnection.getProjectDataByJobCode(jobCode);
         
@@ -111,15 +111,31 @@ public class PanelAction extends javax.swing.JPanel {
 
 
             
-                document.add(new Paragraph("Job Code: " + doc.getString("job_code")));
-                document.add(new Paragraph("Client Name: " + doc.getString("client_name")));
-                document.add(new Paragraph("Status: " + doc.getString("status")));
-                document.add(new Paragraph("Date Issued: " + doc.getString("date_issued")));
-                document.add(new Paragraph("Date Confirmed: " + doc.getString("date_confirmed")));
-                document.add(new Paragraph("Running Days: " + doc.getString("running_days")));
-                document.add(new Paragraph("Date Due: " + doc.getString("date_due")));
-                document.add(new Paragraph("Warranty: " + doc.getString("warranty")));
-                document.add(new Paragraph("----------"));
+//                document.add(new Paragraph("Job Code: " + doc.getString("job_code")));
+//                document.add(new Paragraph("Client Name: " + doc.getString("client_name")));
+//                document.add(new Paragraph("Status: " + doc.getString("status")));
+//                document.add(new Paragraph("Date Issued: " + doc.getString("date_issued")));
+//                document.add(new Paragraph("Date Confirmed: " + doc.getString("date_confirmed")));
+//                document.add(new Paragraph("Running Days: " + doc.getString("running_days")));
+//                document.add(new Paragraph("Date Due: " + doc.getString("date_due")));
+//                document.add(new Paragraph("Warranty: " + doc.getString("warranty")));
+//                document.add(new Paragraph("----------"));
+
+            document.add(new Paragraph("Job Type: " + doc.getString("job_type")));
+            document.add(new Paragraph("Job Code: " + doc.getString("job_code")));
+            document.add(new Paragraph("Client Name: " + doc.getString("client_name")));
+            document.add(new Paragraph("Address: " + doc.getString("address")));
+            document.add(new Paragraph("Contact: " + doc.getString("contact")));
+            document.add(new Paragraph("Concern: " + doc.getString("concern")));
+            document.add(new Paragraph("Leader: " + doc.getString("leader")));
+            document.add(new Paragraph("Transportation: " + doc.getString("transportation")));
+            document.add(new Paragraph("Date Due: " + doc.getString("date_due")));
+            document.add(new Paragraph("Date Issued: " + doc.getString("date_issued")));
+            document.add(new Paragraph("Date Confirmed: " + doc.getString("date_confirmed")));
+            document.add(new Paragraph("Running Days: " + doc.getString("running_days")));
+            document.add(new Paragraph("Warranty: " + doc.getString("warranty")));
+            document.add(new Paragraph("Status: " + doc.getString("status")));
+
             
             
             document.close();
