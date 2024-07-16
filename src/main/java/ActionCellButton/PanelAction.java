@@ -4,7 +4,32 @@
  */
 package ActionCellButton;
 
+//import javax.swing.JOptionPane;
+//import java.io.FileNotFoundException;
+//import java.io.FileOutputStream;
+//import java.util.List;
+//import com.itextpdf.kernel.pdf.PdfWriter;
+//import com.itextpdf.kernel.pdf.PdfDocument;
+//import com.itextpdf.layout.Document;
+//import com.itextpdf.layout.element.Paragraph;
+//import com.itextpdf.layout.element.Paragraph;
+//import com.mycompany.mavenproject1.MangoDBConnection;
+//import org.bson.BsonDocument;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Component;
+
 import javax.swing.JOptionPane;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.List;
+import org.bson.Document;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.layout.element.Paragraph;
+import com.mycompany.mavenproject1.MangoDBConnection;
+import javax.swing.JTable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
@@ -12,10 +37,15 @@ import javax.swing.JOptionPane;
  */
 public class PanelAction extends javax.swing.JPanel {
 
+    private final JTable table;
+    private final int row;
+
     /**
      * Creates new form PanelAction
      */
-    public PanelAction() {
+    public PanelAction(JTable table, int row) {
+        this.table = table;
+        this.row = row;
         initComponents();
     }
 
@@ -56,7 +86,40 @@ public class PanelAction extends javax.swing.JPanel {
 
     private void actionButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionButton1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(actionButton1, "show");
+//        JOptionPane.showMessageDialog(actionButton1, "show");
+        
+        MangoDBConnection mangoDBConnection = new MangoDBConnection();
+        List<Document> projectData = mangoDBConnection.getProjectData();
+        String jobCode = (String) table.getValueAt(row, 0);
+        Document doc = mangoDBConnection.getProjectDataByJobCode(jobCode);
+        String pdfPath = "project_data" + jobCode + ".pdf";
+        
+        
+         try {
+            PdfWriter writer = new PdfWriter(pdfPath);
+            PdfDocument pdfDoc = new PdfDocument(writer);
+            com.itextpdf.layout.Document document =  new com.itextpdf.layout.Document(pdfDoc);
+
+
+            
+                document.add(new Paragraph("Job Code: " + doc.getString("job_code")));
+                document.add(new Paragraph("Client Name: " + doc.getString("client_name")));
+                document.add(new Paragraph("Status: " + doc.getString("status")));
+                document.add(new Paragraph("Date Issued: " + doc.getString("date_issued")));
+                document.add(new Paragraph("Date Confirmed: " + doc.getString("date_confirmed")));
+                document.add(new Paragraph("Running Days: " + doc.getString("running_days")));
+                document.add(new Paragraph("Date Due: " + doc.getString("date_due")));
+                document.add(new Paragraph("Warranty: " + doc.getString("warranty")));
+                document.add(new Paragraph("----------"));
+            
+            
+            document.close();
+            JOptionPane.showMessageDialog(actionButton1, "PDF generated successfully: " + pdfPath);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(actionButton1, "Error generating PDF: " + e.getMessage());
+        }
+        
     }//GEN-LAST:event_actionButton1ActionPerformed
 
 

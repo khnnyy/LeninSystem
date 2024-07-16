@@ -75,13 +75,6 @@ public class DashBoard extends javax.swing.JFrame {
                         String dateDue = getStringValue(document, "date_due");
                         String warranty = getStringValue(document, "warranty");
                         
-                        //                        if (dateIssued != null) {  // Check for null values before formatting
-//                            
-//                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  // Adjust format as needed
-//                            String formattedDateIssued = formatter.format(dateIssued);
-//                        }
-                        // Add a new table row with extracted data
-
                         // Add a new table row with extracted data
                         model.addRow(new Object[]{jobCode, clientName, status, dateIssued, dateConfirmed, runningDays, dateDue, warranty});
                     }
