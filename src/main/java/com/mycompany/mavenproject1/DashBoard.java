@@ -1,5 +1,7 @@
 package com.mycompany.mavenproject1;
 
+import ActionCellButton.TableActionCellEditor;
+import ActionCellButton.TableActionCellRender;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,6 +13,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import org.bson.Document;
 
 /*
@@ -35,6 +39,14 @@ public class DashBoard extends javax.swing.JFrame {
         initComponents();
         
         mdb = new MangoDBConnection();
+        
+        // Change the size of the second column (Name)
+        TableColumnModel columnModel = Dsb_Table.getColumnModel();
+        TableColumn actionColumn = columnModel.getColumn(8);
+        actionColumn.setPreferredWidth(100);
+        
+        Dsb_Table.getColumnModel().getColumn(8).setCellRenderer(new TableActionCellRender());
+        Dsb_Table.getColumnModel().getColumn(8).setCellEditor(new TableActionCellEditor());
     }
     
         private void updateTable() {
@@ -132,9 +144,18 @@ public class DashBoard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Job Order No.", "Client Name", "Project Status", "Date Issued ", "Date Confirmed", "Running Days", "Date Due", "Warranty Status"
+                "Job Order No.", "Client Name", "Project Status", "Date Issued ", "Date Confirmed", "Running Days", "Date Due", "Warranty Status", "Action"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Dsb_Table.setRowHeight(40);
         jScrollPane1.setViewportView(Dsb_Table);
 
         refresh.setText("Refresh");
@@ -151,16 +172,13 @@ public class DashBoard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(configEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(650, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1042, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
