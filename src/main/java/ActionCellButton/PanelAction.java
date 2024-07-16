@@ -27,6 +27,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.layout.element.Paragraph;
 import com.mycompany.mavenproject1.MangoDBConnection;
+import java.io.File;
 import javax.swing.JTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -92,7 +93,15 @@ public class PanelAction extends javax.swing.JPanel {
         List<Document> projectData = mangoDBConnection.getProjectData();
         String jobCode = (String) table.getValueAt(row, 0);
         Document doc = mangoDBConnection.getProjectDataByJobCode(jobCode);
-        String pdfPath = "project_data" + jobCode + ".pdf";
+        
+        // Get the path to the user's Documents folder
+        String userHome = System.getProperty("user.home");
+        File documentsFolder = new File(userHome, "Documents");
+        if (!documentsFolder.exists()) {
+            documentsFolder.mkdirs();
+        }
+        
+        String pdfPath = new File (documentsFolder, "project_data" + jobCode + ".pdf").getAbsolutePath();
         
         
          try {
