@@ -20,7 +20,7 @@ public class TableActionCellRender extends DefaultTableCellRenderer{
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component com = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     
-        PanelAction act = new PanelAction();
+        PanelAction act = new PanelAction(table, row);
         
         if(isSelected==false && row%2==0){
             act.setBackground(Color.white);

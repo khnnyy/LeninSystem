@@ -22,7 +22,7 @@ public class TableActionCellEditor extends DefaultCellEditor {
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        PanelAction act = new PanelAction();
+        PanelAction act = new PanelAction(table, row);
         act.setBackground(table.getSelectionBackground());
         return act;
     }
