@@ -28,7 +28,7 @@ public class EmailConfig {
 
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("notmycandy56@gmail.com", "uotu kidb udrv ccdh");
+                return new PasswordAuthentication("leninwebApp@gmail.com", "gpfq stbp onrw vngx");
             }
         });
 

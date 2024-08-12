@@ -51,7 +51,7 @@ public class MangoDBConnection {
 
     @Autowired
     public MangoDBConnection() {
-             mongoClient = MongoClients.create("mongodb+srv://khadeem:lenin_JO@clusterleninjo.divpuaq.mongodb.net/LeninJobOrder?retryWrites=true&w=majority&appName=ClusterLeninJO");
+             mongoClient = MongoClients.create("mongodb+srv://admin:lenin@leninjo.uqysp.mongodb.net/?retryWrites=true&w=majority&appName=LeninJO");
         this.database = mongoClient.getDatabase("LeninJobOrder");
         this.collection = database.getCollection("solutionsClient");
         this.configuration = database.getCollection("solutionsConfig");

@@ -42,7 +42,7 @@ public class FormController {
         List<String> recipients = mangoDBConnection.getEmail();
 
         try {
-            EmailConfig.sendEmail(recipients, "notmycandy56@gmail.com", "smtp.gmail.com", "Job Order Form Submission", emailBody, null);
+            EmailConfig.sendEmail(recipients, "leninwebApp@gmail.com", "smtp.gmail.com", "Job Order Form Submission", emailBody, null);
         } catch (Exception e) {
             e.printStackTrace();
             // Handle the exception appropriately (e.g., add an error message to the model)
